@@ -141,13 +141,17 @@ class SillyCog:
     @commands.cooldown(1, 15, commands.BucketType.channel)
     async def memes(self, ctx, *, meme: str):
         """Pick your poison: mod, ccia or dev memes. Or all of them!"""
+        honorable_users = {"nanako": ":mouse:", "skull": ":skull:", "paradox": ":rat:",
+                           "garn": ":snail:", "nursie": ":smirk_cat:", "alberyk": ":smiling_imp:",
+                           "arrow": ":arrow_left:", "lohikar": ":face_palm:", "poze": ":shrug:",
+                           "drago": ":dragon_face:"}
+
         if meme.lower() not in ["mod", "dev", "ccia"]:
-            if meme.lower() == "nanako":
-                await ctx.send(f":mouse: :dagger:")
-            elif meme.lower() == "skull":
-                await ctx.send(f":skull: :dagger:")
+            found = honorable_users[meme.lower()]
+            if found:
+                await ctx.send(found + " :dagger:")
             else:
-                await ctx.send(f":angry: :dagger:")
+                await ctx.send(":angry: :dagger:")
             return
 
         async with aiohttp.ClientSession() as session:
@@ -166,8 +170,8 @@ class SillyCog:
     @commands.cooldown(1, 5, commands.BucketType.channel)
     async def pick(self, ctx, *, inp: str):
         """Makes a random choice. Use like pick choice1, choice2, ..., choice_n"""
-        if len(ctx.mentions):
-            await ctx.send("Sorry, I do not ping people.")
+        if len(ctx.message.mentions):
+            await ctx.send(f"Sorry, I do not like to ping people. :dagger:")
             return
 
         choices = inp.split(",")
