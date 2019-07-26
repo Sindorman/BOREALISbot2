@@ -5,7 +5,7 @@ from discord.ext import commands
 
 from .utils import auth, AuthPerms, AuthType
 
-class SillyCog:
+class SillyCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -141,6 +141,7 @@ class SillyCog:
     @commands.cooldown(1, 15, commands.BucketType.channel)
     async def memes(self, ctx, *, meme: str):
         """Pick your poison: mod, ccia or dev memes. Or all of them!"""
+
         honorable_users = {"nanako": ":mouse:", "skull": ":skull:", "paradox": ":rat:",
                            "garn": ":snail:", "nursie": ":smirk_cat:", "alberyk": ":smiling_imp:",
                            "arrow": ":arrow_left:", "lohikar": ":face_palm:", "poze": ":shrug:",
@@ -170,8 +171,8 @@ class SillyCog:
     @commands.cooldown(1, 5, commands.BucketType.channel)
     async def pick(self, ctx, *, inp: str):
         """Makes a random choice. Use like pick choice1, choice2, ..., choice_n"""
-        if len(ctx.message.mentions):
-            await ctx.send(f"Sorry, I do not like to ping people. :dagger:")
+        if len(ctx.message.mentions) or len(ctx.message.role_mentions) or ctx.message.mention_everyone:
+            await ctx.send("Sorry, I do not like to ping people. :dagger:")
             return
 
         choices = inp.split(",")
