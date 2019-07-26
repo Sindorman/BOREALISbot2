@@ -145,7 +145,7 @@ class SillyCog(commands.Cog):
         honorable_users = {"nanako": ":mouse:", "skull": ":skull:", "paradox": ":rat:",
                            "garn": ":snail:", "nursie": ":smirk_cat:", "alberyk": ":smiling_imp:",
                            "arrow": ":arrow_left:", "lohikar": ":face_palm:", "poze": ":shrug:",
-                           "drago": ":dragon_face:"}
+                           "drago": "https://i.imgur.com/Vyc5lA5.jpg"}
 
         if meme.lower() not in ["mod", "dev", "ccia"]:
             found = honorable_users[meme.lower()]
