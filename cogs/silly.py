@@ -141,13 +141,13 @@ class SillyCog(commands.Cog):
     @commands.cooldown(1, 15, commands.BucketType.channel)
     async def memes(self, ctx, *, meme: str):
         """Pick your poison: mod, ccia or dev memes. Or all of them!"""
+        honorable_users = {"skull": ":skull:", "drago": "https://i.imgur.com/Vyc5lA5.jpg"}
         if meme.lower() not in ["mod", "dev", "ccia"]:
-            if meme.lower() == "nanako":
-                await ctx.send(f":mouse: :dagger:")
-            elif meme.lower() == "skull":
-                await ctx.send(f":skull: :dagger:")
+            found = honorable_users[meme.lower()]
+            if found:
+                await ctx.send(found + " :dagger:")
             else:
-                await ctx.send(f":angry: :dagger:")
+                await ctx.send(":angry: :dagger:")
             return
 
         async with aiohttp.ClientSession() as session:
